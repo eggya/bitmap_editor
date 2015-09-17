@@ -1,7 +1,11 @@
 require 'spec_helper'
 
 describe 'bitmap editor command' do
-  it 'will print hello to screen' do
-    expect(`ruby #{Dir.pwd}/bin/bitmap_editor`).to include 'hello'
+
+  before  { allow(Readline).to receive(:readline).with("> ",true) }
+  subject { BitmapEditor::App.run! }
+
+  it "should run and initiated bitmap editor" do
+    expect( subject ).to_not be false
   end
 end
