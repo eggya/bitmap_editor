@@ -21,13 +21,13 @@ module BitmapEditor
 
     # returns [BitmapEditor::Error] when validation failed
     def execute!
-      #fail ValidationError.new unless constantized_tool.perform! params
+      fail ValidationError.new unless constantized_tool.perform! params
     end
 
     private
 
       def constantized_tool
-        #"BitmapEditor::Tool::#{key}".split("::").inject(Object) {|obj,k| obj.const_get k }
+        "BitmapEditor::Tool::#{key}".split("::").inject(Object) {|obj,k| obj.const_get k }
       end
 
   end
