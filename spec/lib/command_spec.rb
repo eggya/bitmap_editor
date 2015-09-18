@@ -34,4 +34,12 @@ describe BitmapEditor::Command do
     end
   end
 
+  describe "#Execute!" do
+    # subject { BitmapEditor::Command.new(['I','M','N']).execute! }
+
+    # it "should return bitmap editor error" do
+    #   expect{ subject }.to raise_error BitmapEditor::ValidationError
+    # end
+  end
+
 end
