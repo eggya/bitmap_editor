@@ -22,7 +22,19 @@ describe BitmapEditor::App do
       it "should exit the system on interrupt event" do
         expect { subject; exit }.to raise_error SystemExit
       end
-    end    
+    end
+
+    context "rescue and retry on raised error" do
+      before  { allow(Readline).to receive(:readline).with("> ", true).and_return("T") }
+      subject { spy(BitmapEditor::App.run!) }
+
+      it "should exit the system on interrupt event" do
+        pending "Example is not working, need to revisit."
+        fail
+        expect( subject ).to have_received(:retry).with("T")
+      end
+    end
+
   end
 
   #### Instance Methods

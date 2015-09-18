@@ -22,6 +22,9 @@ module BitmapEditor
           BitmapEditor::Command.execute line.split
         end
       
+      rescue Error => e
+        warn e.message
+        retry
       rescue Interrupt
         exit
       end
