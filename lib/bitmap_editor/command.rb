@@ -2,7 +2,9 @@ module BitmapEditor
   class Command
 
     # TODO: tranform to hash / struct to then execute command to Tools/File
+    # TODO: gather the class names from Tools module
     Registered = ["I","L","C","V","H","F","S"].freeze
+    attr_reader :key, :params
 
     # returns [BitmapEditorError] when validation failed
     # returns [BitmapEditor::Command] when passed validation
