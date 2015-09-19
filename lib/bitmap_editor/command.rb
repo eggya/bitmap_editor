@@ -3,25 +3,27 @@ module BitmapEditor
 
     # TODO: gather the class names from Tools module
     Registered = ["I","L","C","V","H","F","S"].freeze
-    attr_reader :key, :params
+    attr_reader :key, :params, :bitmap
 
     # returns [BitmapEditorError] when validation failed
     # returns [BitmapEditor::Command] when validation passed
-    def self.execute keys
+    def self.execute bitmap,keys
       fail InvalidCommand.new(keys) unless Registered.include? keys.first
-      new keys
+      new(bitmap,keys)
     end
 
     # initialize
-    def initialize keys
+    def initialize bitmap,keys
+      @bitmap = bitmap
       @key    = keys.shift
       @params = keys
+      
       execute!
     end
 
     # returns [BitmapEditor::Error] when validation failed
     def execute!
-      fail ValidationError.new unless constantized_tool.perform! params
+      fail ValidationError.new unless constantized_tool.perform! bitmap,params
     end
 
     private

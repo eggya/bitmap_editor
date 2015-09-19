@@ -2,15 +2,17 @@ module BitmapEditor
   module Tool
     class Base
 
+      attr_reader :bitmap, :params
+
       # returns [Boolean] true when performed
-      def self.perform! params
-        new(params).perform!
+      def self.perform! bitmap,params
+        new(bitmap,params).perform!
       end
 
       # initialize with params
-      def initialize params
+      def initialize bitmap,params
         @params = params
-        perform! if validated?    
+        @bitmap = bitmap
       end
 
       # abstract
@@ -24,7 +26,7 @@ module BitmapEditor
       def perform!
         false
       end
-      
+
     end
   end
 end

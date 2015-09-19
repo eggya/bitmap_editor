@@ -42,6 +42,10 @@ describe BitmapEditor::App do
   describe "Initialize" do
     subject { BitmapEditor::App.new }
     it { is_expected.to be_instance_of(BitmapEditor::App) }
+
+    it "should assign particular variables" do
+      expect( subject.bitmap ).to be_a BitmapEditor::Bitmap
+    end
   end
 
 end

@@ -3,11 +3,12 @@ require 'spec_helper'
 describe BitmapEditor::Tool::C do
 
   let(:params) { [] }
+  let(:bitmap) { BitmapEditor::Bitmap.new }
 
   #### CLASS METHODS
 
   describe "#Perform!" do
-    subject { BitmapEditor::Tool::Base.perform! params }
+    subject { BitmapEditor::Tool::Base.perform! bitmap,params }
 
     it "should return false as default" do
       expect( subject ).to be false
@@ -17,7 +18,7 @@ describe BitmapEditor::Tool::C do
   #### INSTANCE METHODS
 
   context "Instance methods" do
-    subject { BitmapEditor::Tool::Base.new params }
+    subject { BitmapEditor::Tool::Base.new bitmap,params }
     it { is_expected.to be_instance_of BitmapEditor::Tool::Base }
 
     describe "#Validated?" do

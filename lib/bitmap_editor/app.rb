@@ -4,6 +4,7 @@ module BitmapEditor
   class App
 
     Terminates = %w(X)
+    attr_reader :bitmap
 
     # application runner
     def self.run!
@@ -11,7 +12,9 @@ module BitmapEditor
     end
 
     # placeholder to initiate
-    def initialize; end
+    def initialize
+      @bitmap = Bitmap.new
+    end
 
     # read lines as commands and return action accordingly
     # rescue SIGINT and exit console
@@ -19,7 +22,7 @@ module BitmapEditor
       begin
         while line = Readline.readline("> ", true)
           exit if line.split == Terminates
-          BitmapEditor::Command.execute line.split
+          BitmapEditor::Command.execute bitmap,line.split
         end
       
       rescue Error => e

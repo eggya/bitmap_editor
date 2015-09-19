@@ -2,12 +2,14 @@ require 'spec_helper'
 
 describe BitmapEditor::Command do
 
+  let(:bitmap) { BitmapEditor::Bitmap.new }
+
   #### Class Methods
 
   describe "#Execute" do
 
     context "case of invalid command" do
-      subject { BitmapEditor::Command.execute ["bogus"] }
+      subject { BitmapEditor::Command.execute bitmap,["bogus"] }
 
       it "should throw warn message on unregistered command" do
         expect { subject }.to raise_error BitmapEditor::InvalidCommand
@@ -15,7 +17,7 @@ describe BitmapEditor::Command do
     end
 
     context "case of valid command" do
-      # subject { BitmapEditor::Command.execute ["S"] }
+      # subject { BitmapEditor::Command.new bitmap,['I','M','N'] }
       # it { is_expected.to be_instance_of BitmapEditor::Command }
     end
 
@@ -24,7 +26,7 @@ describe BitmapEditor::Command do
   #### Instance Methods
 
   describe "#Initialize" do
-    # subject { BitmapEditor::Command.new ['I','M','N'] }
+    # subject { BitmapEditor::Command.new bitmap,['I','M','N'] }
     # it { is_expected.to be_instance_of BitmapEditor::Command }
 
     # it "should assigns class variables" do
@@ -35,7 +37,7 @@ describe BitmapEditor::Command do
   end
 
   describe "#Execute!" do
-    # subject { BitmapEditor::Command.new(['I','M','N']).execute! }
+    # subject { BitmapEditor::Command.new(bitmap,['I','M','N']).execute! }
 
     # it "should return bitmap editor error" do
     #   expect{ subject }.to raise_error BitmapEditor::ValidationError
