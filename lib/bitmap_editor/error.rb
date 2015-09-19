@@ -9,7 +9,7 @@ module BitmapEditor
 
   class InvalidCommand < Error
     def initialize keys
-      super(["Invalid command: #{keys.first}", "Try H for help, or X to exit"].join("\n"))
+      super("Invalid command: #{keys.first}")
     end
   end
 end
