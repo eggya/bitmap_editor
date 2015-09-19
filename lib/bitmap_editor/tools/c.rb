@@ -4,12 +4,16 @@ module BitmapEditor
 
       # returns [Boolean] True when validation passed
       def validated?
-        false
+        params.empty?
       end
 
       # returns [Boolean] True when succesfully performed
       def perform!
-        false
+        return unless validated?
+        
+        bitmap.pixels.each do |row,pixel|
+          pixel.map! {|col| col = 0 }
+        end
       end
       
     end
