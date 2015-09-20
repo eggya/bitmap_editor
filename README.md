@@ -37,7 +37,7 @@ Accepted colour is a single capital letter of A - Z.
     > L X Y C
 ```
 
-**Vertical colouring:**    
+**Vertical segment colouring:**    
 Draw a vertical segment of colour STR C in column INT X between rows INT Y1 and INT Y2 (inclusive).    
 Accepted range is from 1 to max canvas width/height or 250 whichever greater.    
 Accepted colour is a single capital letter of A - Z.
