@@ -17,7 +17,7 @@ describe BitmapEditor::Command do
     end
 
     context "case of valid command" do
-      subject { BitmapEditor::Command.new bitmap,['I','M','N'] }
+      subject { BitmapEditor::Command.new bitmap,['I',3,4] }
       it { is_expected.to be_instance_of BitmapEditor::Command }
     end
 
@@ -26,13 +26,13 @@ describe BitmapEditor::Command do
   #### Instance Methods
 
   describe "#Initialize" do
-    subject { BitmapEditor::Command.new bitmap,['I','M','N'] }
+    subject { BitmapEditor::Command.new bitmap,['I',3,4] }
     it { is_expected.to be_instance_of BitmapEditor::Command }
 
     it "should assigns class variables" do
       expect( subject.key ).to eq 'I'
       expect( subject.params ).to be_a Array
-      expect( subject.params ).to match ['M','N']
+      expect( subject.params ).to match [3,4]
     end
   end
 

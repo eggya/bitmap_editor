@@ -12,7 +12,7 @@ module BitmapEditor
 
       # returns [Boolean] True when validation passed
       def validated?
-        params.count == 2
+        valid_params? && valid_dimension?
       end
 
       # returns [Boolean] True when succesfully performed
@@ -23,6 +23,16 @@ module BitmapEditor
         bitmap.height = @y_axis
         bitmap.pixels = bitmap.generate_pixels
       end
+
+      protected
+
+        def valid_params?
+          params.count == 2
+        end
+
+        def valid_dimension?
+          [@x_axis,@y_axis].all? {|num| num > 0 && num <= 250 }
+        end
 
     end
   end

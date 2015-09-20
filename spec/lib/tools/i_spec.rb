@@ -31,6 +31,13 @@ describe BitmapEditor::Tool::I do
         end
       end
 
+      context "surpased max canvass size" do
+        let(:params) { [251,23] }
+        it "should return false in oversized bitmaps" do
+          expect( subject.validated? ).to be false
+        end
+      end
+
       context "passing validation" do
         it "should return false in valid count of parameters" do
           expect( subject.validated? ).to be true
