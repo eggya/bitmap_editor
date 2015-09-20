@@ -7,6 +7,14 @@ describe BitmapEditor::Tool::Base do
 
   #### CLASS METHODS
 
+  describe "#Descendants" do
+    subject { BitmapEditor::Tool::Base.descendants }
+
+    it "should return a list of descendants names" do
+      expect( subject ).to match_array ["I","L","C","V","H","F","S","R"]
+    end
+  end
+
   describe "#Perform!" do
     subject { BitmapEditor::Tool::Base.perform! bitmap,params }
 
