@@ -44,6 +44,14 @@ describe BitmapEditor::Tool::H do
         end
       end
 
+      context "validates coordinates" do
+        let(:params) { [1,1,0,"C"] }
+
+        it "should raise error when coordinates are not in range 1 to 250" do
+          expect{ subject.validate }.to raise_error BitmapEditor::CoordinateValidationError
+        end
+      end
+
       context "validates colour" do
         let(:params) { [1,2,3,4] }
 

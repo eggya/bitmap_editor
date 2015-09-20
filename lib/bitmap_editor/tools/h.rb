@@ -15,6 +15,7 @@ module BitmapEditor
       # returns [Boolean] True when validation passed
       def validate
         validate_params
+        validate_coordinates
         validate_colour
         validate_dimension
       end
@@ -30,14 +31,17 @@ module BitmapEditor
           fail ParamsValidationError.new(params.count,4) unless params.count == 4
         end
 
+        def validate_coordinates
+          fail CoordinateValidationError.new unless [@y_axis, @x_axis_1, @x_axis_2].all? {|num| num.between? 1,250 }
+        end
+
         def validate_colour
           fail ValidationError.new("colours are specified by single capital letter") if @colour.match(/^[A-Z]$/).nil?
         end
 
         def validate_dimension
-          valid_range = [@y_axis,@x_axis_1,@x_axis_2].all? {|num| num.between? 0,250 }
-          valid_dimension = @x_axis_1 <= bitmap.width && @x_axis_2 <= bitmap.width && @y_axis <= bitmap.height
-          fail DimensionValidationError.new(bitmap.width,bitmap.height) unless valid_range && valid_dimension
+          fail DimensionValidationError.new(bitmap.width, bitmap.height) unless
+            @x_axis_1 <= bitmap.width && @x_axis_2 <= bitmap.width && @y_axis <= bitmap.height
         end
     end
   end

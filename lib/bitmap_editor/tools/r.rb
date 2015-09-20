@@ -2,6 +2,8 @@ module BitmapEditor
   module Tool
     class R < Base
 
+      # initialize
+      # assign additional vars
       def initialize bitmap,params
         super
         @width = bitmap.width

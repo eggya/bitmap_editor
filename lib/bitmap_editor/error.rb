@@ -7,6 +7,12 @@ module BitmapEditor
     end
   end
 
+  class CoordinateValidationError < Error
+    def initialize
+      super("Validation error: accepted pixel coordinates is between 1 to 250")
+    end
+  end
+
   class DimensionValidationError < Error
     def initialize width=250,height=250
       super("Validation error: accepted range for x-axis is 1 to #{width}, y-axis 1 to #{height}")
