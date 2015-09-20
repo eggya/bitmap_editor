@@ -2,6 +2,12 @@ module BitmapEditor
   module Tool
     class R < Base
 
+      def initialize bitmap,params
+        super
+        @width = bitmap.width
+        @height = bitmap.height
+      end
+
       # returns [Boolean] True when validation passed
       def validate
         fail ParamsValidationError.new(params.count,0) unless params.empty?
@@ -10,9 +16,9 @@ module BitmapEditor
       protected
 
         def perform
-          bitmap.pixels = bitmap.pixels.transpose.map &:reverse
-          bitmap.width  = bitmap.pixels.size
-          bitmap.height = bitmap.pixels[0].size
+          bitmap.width  = @height
+          bitmap.height = @width
+          bitmap.pixels = @bitmap.pixels.transpose.map(&:reverse)
         end
       
     end
