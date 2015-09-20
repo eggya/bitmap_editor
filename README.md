@@ -56,7 +56,15 @@ Terminate the session.
 ```sh
     > X
 ```
- 
+
+## New Feature
+
+**Rotate bitmap:**    
+Rotates the bitmap clockwise by 90&deg;.
+```sh
+    > R
+```
+
 ## Example
     
 ```
@@ -79,5 +87,10 @@ Terminate the session.
     JWJJJ
     JJJJJ
     JJJJJ
+    > R
+    JJJJJJ
+    JJWWJJ
+    JJJJZJ
+    JJJJJJ
 ```
  
