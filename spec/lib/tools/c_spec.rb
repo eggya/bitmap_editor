@@ -23,18 +23,18 @@ describe BitmapEditor::Tool::C do
     subject { BitmapEditor::Tool::C.new bitmap,params }    
     it { is_expected.to be_instance_of BitmapEditor::Tool::C }
 
-    describe "#Validated?" do
+    describe "#Validate" do
       context "too many parameters" do
         let(:params) {[ "P","F" ]}
 
-        it "should return false when params is not in valid count" do
-          expect( subject.validated? ).to be false
+        it "should raise error when params is not in valid count" do
+          expect{ subject.validate }.to raise_error BitmapEditor::ValidationError
         end
       end
 
       context "passing validation" do
-        it "should return true when params is valid count" do
-          expect( subject.validated? ).to be true
+        it "should not raise error when params is valid count" do
+          expect( subject.validate ).to be_nil
         end
       end
     end

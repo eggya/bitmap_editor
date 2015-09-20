@@ -3,15 +3,15 @@ module BitmapEditor
     class S < Base
 
       # returns [Boolean] True when validation passed
-      def validated?
-        params.empty?
+      def validate
+        fail ParamsValidationError.new(params.count,0) unless params.empty?
       end
 
-      # returns [Boolean] True when succesfully performed
-      def perform!
-        return unless validated? || bitmap.dimension.zero?
-        bitmap.pixels.each{|col| printf col.join + "\n" }
-      end
+      protected
+
+        def perform
+          bitmap.pixels.each{|col| printf col.join + "\n" }
+        end
       
     end
   end

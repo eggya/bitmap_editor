@@ -3,15 +3,15 @@ module BitmapEditor
     class C < Base
 
       # returns [Boolean] True when validation passed
-      def validated?
-        params.empty?
+      def validate
+        return super unless params.empty?
       end
 
-      # returns [Boolean] True when succesfully performed
-      def perform!
-        return unless validated?
-        bitmap.pixels.each {|col| col.fill(0) }
-      end
+      protected
+        
+        def perform
+          bitmap.pixels.each {|col| col.fill(0) }
+        end
       
     end
   end

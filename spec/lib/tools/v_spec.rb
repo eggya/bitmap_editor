@@ -15,7 +15,7 @@ describe BitmapEditor::Tool::V do
   describe "#Perform!" do
     subject { BitmapEditor::Tool::V.perform! bitmap,params }
 
-    it "should return false as default" do
+    it "should change pixels value on perform" do
       expect{ subject }.to change{ bitmap.pixels[1][0] }.from("F").to("C")
     end
   end
@@ -26,44 +26,49 @@ describe BitmapEditor::Tool::V do
     subject { BitmapEditor::Tool::V.new bitmap,params }
     it { is_expected.to be_instance_of BitmapEditor::Tool::V }
 
-    describe "#Validated?" do
+    describe "#Validate" do
 
-      context "validates params" do
-        let(:params) { [1,2,"C",3,"F"] }
+      context "validates too many params" do
+        let(:params) { [1,2,"C",3,4] }
 
-        it "should return false when too many parameters" do
-          expect( subject.send :valid_params? ).to be false
-          expect( subject.validated? ).to be false
+        it "should raise error when too many parameters" do
+          expect{ subject.validate }.to raise_error BitmapEditor::ParamsValidationError
+        end
+      end
+
+      context "validates too few params" do
+        let(:params) { [1,2,"C"] }
+
+        it "should raise error when not enough parameters" do
+          expect{ subject.validate }.to raise_error BitmapEditor::ParamsValidationError
         end
       end
 
       context "validates colour" do
         let(:params) { [1,2,3,4] }
 
-        it "should return false when not correct format of colour" do
-          expect( subject.send :valid_colour? ).to be false
-          expect( subject.validated? ).to be false
+        it "should raise error when not correct format of colour" do
+          expect{ subject.validate }.to raise_error BitmapEditor::ValidationError
         end
       end
 
       context "validates dimension" do
-        let(:params) { [4,2,1,"C"] }
+        let(:params) { [6,2,1,"C"] }
 
-        it "should return false when coordinates are bigger than canvass" do
-          expect( subject.send :valid_dimension? ).to be false
-          expect( subject.validated? ).to be false
+        it "should raise error when coordinates are bigger than canvass" do
+          expect{ subject.validate }.to raise_error BitmapEditor::ValidationError
         end
       end
 
       context "passing validation" do
-        it "should return true when validation satisfied" do
-          expect( subject.validated? ).to be true
+        it "should not raise any errors when validation satisfied" do
+          expect( subject.validate ).to be_nil
         end
       end
     end
 
     describe "#Perform!" do
-      it "should return false in base class" do
+      it "should change pixels value on perform" do
         expect{ subject.perform! }.to change{ bitmap.pixels[1][0] }.from("F").to("C")
       end
     end

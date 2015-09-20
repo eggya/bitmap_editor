@@ -21,7 +21,7 @@ module BitmapEditor
 
     # returns [BitmapEditor::Error] when validation failed
     def execute!
-      fail ValidationError.new unless constantized_tool.perform! bitmap,params
+      constantized_tool.perform! bitmap,params
     end
 
     private

@@ -5,11 +5,30 @@ describe BitmapEditor::Error do
 end
 
 describe BitmapEditor::ValidationError do
-  subject { BitmapEditor::ValidationError.new }
-  it { is_expected.to be_a(BitmapEditor::ValidationError) }
+  
+  context "without args" do
+    subject { BitmapEditor::ValidationError.new }
+
+    it "should return a particular error message" do
+      expect( subject.message ).to include("Validation error")
+    end
+  end
+
+  context "with args" do
+    subject { BitmapEditor::ValidationError.new "abc" }
+
+    it "should accept an argument" do
+      expect( subject.message ).to include("Validation error: abc")
+    end
+  end
+end
+
+describe BitmapEditor::ParamsValidationError do
+  subject { BitmapEditor::ParamsValidationError.new 3,4 }
+  it { is_expected.to be_a(BitmapEditor::ParamsValidationError) }
 
   it "should return a particular error message" do
-    expect( subject.message ).to include("Validation error")
+    expect( subject.message ).to include("Validation error: 3 params for 4")
   end
 end
 

@@ -11,27 +11,25 @@ module BitmapEditor
       end
 
       # returns [Boolean] True when validation passed
-      def validated?
-        valid_params? && valid_dimension?
-      end
-
-      # returns [Boolean] True when succesfully performed
-      def perform!
-        return unless validated?
-
-        bitmap.width  = @x_axis
-        bitmap.height = @y_axis
-        bitmap.pixels = bitmap.generate_pixels
+      def validate
+        validate_params
+        validate_dimension
       end
 
       protected
 
-        def valid_params?
-          params.count == 2
+        def perform
+          bitmap.width  = @x_axis
+          bitmap.height = @y_axis
+          bitmap.pixels = bitmap.generate_pixels
         end
 
-        def valid_dimension?
-          [@x_axis,@y_axis].all? {|num| num > 0 && num <= 250 }
+        def validate_params
+          fail ParamsValidationError.new(params.count,2) unless params.count == 2
+        end
+
+        def validate_dimension
+          fail ValidationError.new("maximum size is 250x250") unless [@x_axis,@y_axis].all? {|num| num > 0 && num <= 250 }
         end
 
     end

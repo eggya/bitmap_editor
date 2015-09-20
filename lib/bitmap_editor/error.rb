@@ -2,8 +2,14 @@ module BitmapEditor
   class Error < StandardError; end
 
   class ValidationError < Error
-    def initialize
-      super("Validation error")
+    def initialize msg=nil
+      super(["Validation error",msg].compact.join(": "))
+    end
+  end
+
+  class ParamsValidationError < Error
+    def initialize input,keys
+      super("Validation error: #{input} params for #{keys}")
     end
   end
 

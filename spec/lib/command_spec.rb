@@ -40,7 +40,7 @@ describe BitmapEditor::Command do
     subject { BitmapEditor::Command.new(bitmap,['I']).execute! }
 
     it "should return bitmap editor error when failing validation" do
-      expect{ subject }.to raise_error BitmapEditor::ValidationError
+      expect{ subject }.to raise_error BitmapEditor::ParamsValidationError
     end
   end
 

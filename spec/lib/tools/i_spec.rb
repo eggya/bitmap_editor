@@ -11,7 +11,7 @@ describe BitmapEditor::Tool::I do
   describe "#Perform!" do
     subject { BitmapEditor::Tool::I.perform! bitmap,params }
 
-    it "should return hash of arrays of the bitmap" do
+    it "should change pixels value upon perform" do
       expect{ subject }.to change{ [bitmap.width, bitmap.height, bitmap.pixels] }.to([3,4,new_bitmap])
     end
   end
@@ -22,25 +22,35 @@ describe BitmapEditor::Tool::I do
     subject { BitmapEditor::Tool::I.new bitmap,params }
     it { is_expected.to be_instance_of BitmapEditor::Tool::I }
 
-    describe "#Validated?" do
+    describe "#Validate" do
 
-      context "too many parameters" do
+      context "validates too many params" do
         let(:params) { [1,2,3] }
-        it "should return false in non valid count of parameters" do
-          expect( subject.validated? ).to be false
+
+        it "should return raise error when too many parameters" do
+          expect{ subject.validate }.to raise_error BitmapEditor::ParamsValidationError
         end
       end
 
-      context "surpased max canvass size" do
-        let(:params) { [251,23] }
-        it "should return false in oversized bitmaps" do
-          expect( subject.validated? ).to be false
+      context "validates too few params" do
+        let(:params) { [1] }
+        
+        it "should return raise error when not enough parameters" do
+          expect{ subject.validate }.to raise_error BitmapEditor::ParamsValidationError
+        end
+      end
+
+      context "validates dimension" do
+        let(:params) { [251,251] }
+
+        it "should raise error when exceed max allowed size" do
+          expect{ subject.validate }.to raise_error BitmapEditor::ValidationError
         end
       end
 
       context "passing validation" do
-        it "should return false in valid count of parameters" do
-          expect( subject.validated? ).to be true
+        it "should not raise any errors when validation satisfied" do
+          expect( subject.validate ).to be_nil
         end
       end
     end

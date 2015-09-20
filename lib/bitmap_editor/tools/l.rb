@@ -12,28 +12,28 @@ module BitmapEditor
       end
 
       # returns [Boolean] True when validation passed
-      def validated?
-        valid_params? && valid_colour? && valid_dimension?
-      end
-
-      # returns [Boolean] True when succesfully performed
-      def perform!
-        return unless validated?
-        bitmap.pixels[@y_axis-1][@x_axis-1] = @colour
+      def validate
+        validate_params
+        validate_colour
+        validate_dimension
       end
 
       protected
 
-        def valid_params?
-          params.count == 3
+        def perform
+          bitmap.pixels[@y_axis-1][@x_axis-1] = @colour
         end
 
-        def valid_colour?
-          !@colour.match(/^[A-Z]$/).nil?
+        def validate_params
+          fail ParamsValidationError.new(params.count,3) unless params.count == 3
         end
 
-        def valid_dimension?
-          @x_axis <= bitmap.width && @y_axis <= bitmap.height
+        def validate_colour
+          fail ValidationError.new("colours are specified by single capital letter") if @colour.match(/^[A-Z]$/).nil?
+        end
+
+        def validate_dimension
+          fail ValidationError.new("maximum size is #{bitmap.width}x#{bitmap.height}") unless @x_axis <= bitmap.width && @y_axis <= bitmap.height
         end
 
     end

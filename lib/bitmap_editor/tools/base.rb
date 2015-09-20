@@ -21,16 +21,23 @@ module BitmapEditor
       end
 
       # abstract
-      # returns [Boolean] True when validation passed
-      def validated?
-        false
+      # returns [BitmapEditor::Error] as default
+      def validate
+        fail ValidationError.new
       end
 
       # abstract
       # returns [Boolean] True when succesfully performed
       def perform!
-        false
+        validate
+        perform
       end
+
+      protected
+
+        def perform
+          false
+        end
 
     end
   end

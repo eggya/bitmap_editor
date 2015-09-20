@@ -18,8 +18,8 @@ describe BitmapEditor::Tool::Base do
   describe "#Perform!" do
     subject { BitmapEditor::Tool::Base.perform! bitmap,params }
 
-    it "should return false as default" do
-      expect( subject ).to be false
+    it "should fail validation as default" do
+      expect{ subject }.to raise_error BitmapEditor::ValidationError
     end
   end
 
@@ -29,15 +29,21 @@ describe BitmapEditor::Tool::Base do
     subject { BitmapEditor::Tool::Base.new bitmap,params }
     it { is_expected.to be_instance_of BitmapEditor::Tool::Base }
 
-    describe "#Validated?" do
-      it "should return false in base class" do
-        expect( subject.validated? ).to be false
+    describe "#Validate" do
+      it "should raise error as default" do
+        expect{ subject.validate }.to raise_error BitmapEditor::ValidationError
       end
     end
 
     describe "#Perform!" do
-      it "should return false in base class" do
-        expect( subject.perform! ).to be false
+      it "should fail validation as default" do
+        expect{ subject.perform! }.to raise_error BitmapEditor::ValidationError
+      end
+    end
+
+    describe "#Perform" do
+      it "should return false as default" do
+        expect( subject.send :perform ).to eq false
       end
     end
 
