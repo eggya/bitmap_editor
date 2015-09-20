@@ -31,7 +31,7 @@ Clears the table, setting all pixels to white (O).
 
 **Colour pixel:**    
 Colours the pixel (INT X, INT Y) with colour STR C.    
-Accepted range is from 1 to max canvas width/height or 250 whichever greater.    
+Accepted range is from 1 to max canvas width/height.    
 Accepted colour is a single capital letter of A - Z.
 ```sh
     > L X Y C
@@ -39,7 +39,7 @@ Accepted colour is a single capital letter of A - Z.
 
 **Vertical segment colouring:**    
 Draw a vertical segment of colour STR C in column INT X between rows INT Y1 and INT Y2 (inclusive).    
-Accepted range is from 1 to max canvas width/height or 250 whichever greater.    
+Accepted range is from 1 to max canvas width/height.    
 Accepted colour is a single capital letter of A - Z.
 ```sh
     > V X Y1 Y2 C
@@ -47,7 +47,7 @@ Accepted colour is a single capital letter of A - Z.
 
 **Horizontal segment colouring:**    
 Draw a horizontal segment of colour STR C in row INT Y between columns INT X1 and INT X2 (inclusive).    
-Accepted range is from 1 to max canvas width/height or 250 whichever greater.    
+Accepted range is from 1 to max canvas width/height.    
 Accepted colour is a single capital letter of A - Z.
 ```sh
     > H X1 X2 Y C
@@ -55,7 +55,7 @@ Accepted colour is a single capital letter of A - Z.
 
 **Fill regions:**    
 Fill the region R with the colour STR C. R is defined as: Pixel (INT X, INT Y) belongs to R. Any other pixel which is the same colour as (INT X, INT Y) and shares a common side with any pixel in R also belongs to this region.    
-Accepted range is from 1 to max canvas width/height or 250 whichever greater.    
+Accepted range is from 1 to max canvas width/height.    
 Accepted colour is a single capital letter of A - Z.
 ```sh
     > F X Y C
