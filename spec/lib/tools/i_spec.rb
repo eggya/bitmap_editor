@@ -4,7 +4,7 @@ describe BitmapEditor::Tool::I do
 
   let(:params) { [3,4] }
   let(:bitmap) { BitmapEditor::Bitmap.new }
-  let(:new_bitmap) {{ 1 => [0, 0, 0], 2 => [0, 0, 0], 3 => [0, 0, 0], 4 => [0, 0, 0]}}
+  let(:new_bitmap) {[[0,0,0],[0,0,0],[0,0,0],[0,0,0]]}
 
   #### CLASS METHODS
 
@@ -40,7 +40,7 @@ describe BitmapEditor::Tool::I do
 
     describe "#Perform!" do
       it "should return hash of arrays of the bitmap" do
-        expect( subject.perform! ).to be_a Hash
+        expect( subject.perform! ).to be_a Array
       end
     end
 

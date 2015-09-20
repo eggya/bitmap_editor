@@ -20,7 +20,7 @@ module BitmapEditor
       # returns [Boolean] True when succesfully performed
       def perform!
         return unless validated?
-        [@x_axis_1,@x_axis_2].each {|i| bitmap.pixels[@y_axis][i-1] = @colour }
+        [@x_axis_1,@x_axis_2].each {|i| bitmap.pixels[@y_axis-1][i-1] = @colour }
       end
 
       protected

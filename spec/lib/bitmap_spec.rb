@@ -18,7 +18,7 @@ describe BitmapEditor::Bitmap do
     it "should form empty bitmap object" do
       expect( subject.width  ).to eq 0
       expect( subject.height ).to eq 0
-      expect( subject.pixels ).to be_a Hash
+      expect( subject.pixels ).to be_a Array
     end
   end
 
@@ -40,7 +40,7 @@ describe BitmapEditor::Bitmap do
     end
 
     it "should generate the bitmap's pixels" do
-      expect{ subject.generate_pixels }.to change { subject.pixels }.to( {1=>[0, 0, 0], 2=>[0, 0, 0], 3=>[0, 0, 0], 4=>[0, 0, 0]} )
+      expect{ subject.generate_pixels }.to change { subject.pixels }.to( [[0, 0, 0],[0, 0, 0],[0, 0, 0],[0, 0, 0]] )
     end
   end
   

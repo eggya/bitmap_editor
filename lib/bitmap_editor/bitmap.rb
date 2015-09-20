@@ -8,7 +8,7 @@ module BitmapEditor
     def initialize width=0,height=0
       @width  = width
       @height = height
-      @pixels = Hash.new
+      @pixels = Array.new
     end
 
     # returns [Integer] of the bitmap's dimension
@@ -18,7 +18,7 @@ module BitmapEditor
 
     # returns [Hash[Array]] represents pixels in each rows of the bitmap
     def generate_pixels
-      @pixels = (1..@height).inject({}) {|res,row| res[row] = Array.new(@width) {0} ; res }
+      @pixels = Array.new(@height) { Array.new(@width) {0} }
     end
 
   end

@@ -19,7 +19,7 @@ module BitmapEditor
       # returns [Boolean] True when succesfully performed
       def perform!
         return unless validated?
-        bitmap.pixels[@y_axis][@x_axis-1] = @colour
+        bitmap.pixels[@y_axis-1][@x_axis-1] = @colour
       end
 
       protected

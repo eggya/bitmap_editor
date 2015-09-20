@@ -12,7 +12,7 @@ describe BitmapEditor::Tool::S do
     subject { BitmapEditor::Tool::S.perform! bitmap,params }
 
     it "should return true as default" do
-      expect( subject ).to be true
+      expect( subject ).to match_array [[0,0,0],[0,0,0],[0,0,0]]
     end
   end
 
@@ -30,7 +30,7 @@ describe BitmapEditor::Tool::S do
 
     describe "#Perform!" do
       it "should return false in base class" do
-        expect( subject.perform! ).to be true
+        expect( subject.perform! ).to match_array [[0,0,0],[0,0,0],[0,0,0]]
       end
     end
 

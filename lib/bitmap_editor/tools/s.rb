@@ -10,8 +10,7 @@ module BitmapEditor
       # returns [Boolean] True when succesfully performed
       def perform!
         return unless validated? || bitmap.dimension.zero?
-        bitmap.pixels.values.inject("") {|str,row| str = str.to_s + (row.join + "\n") ; printf str } 
-        true
+        bitmap.pixels.each{|col| printf col.join + "\n" }
       end
       
     end

@@ -10,10 +10,7 @@ module BitmapEditor
       # returns [Boolean] True when succesfully performed
       def perform!
         return unless validated?
-        
-        bitmap.pixels.each do |row,pixel|
-          pixel.map! {|col| col = 0 }
-        end
+        bitmap.pixels.each {|col| col.fill(0) }
       end
       
     end

@@ -9,6 +9,7 @@ module BitmapEditor
         @x_axis = params[0].to_i
         @y_axis = params[1].to_i
         @colour = params[2].to_s
+        @old_colour = bitmap.pixels[@y_axis-1][@x_axis-1]
       end
 
       # returns [Boolean] True when validation passed
@@ -19,10 +20,9 @@ module BitmapEditor
       # returns [Boolean] True when succesfully performed
       def perform!
         return unless validated?
-        
-        old_colour = bitmap.pixels[@y_axis][@x_axis-1]
-        (1..@y_axis+1).each do |row|
-          bitmap.pixels[row] = bitmap.pixels[row].map! {|col| col == old_colour ? col = @colour : col }
+
+        bitmap.pixels.each do |row|
+          row.map! {|col| col == @old_colour ? col = @colour : col }
         end
       end
 

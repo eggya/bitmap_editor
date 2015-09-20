@@ -12,7 +12,7 @@ describe BitmapEditor::Tool::L do
     subject { BitmapEditor::Tool::L.perform! bitmap,params }
 
     it "should return boolean as default" do
-      expect{ subject }.to change{ bitmap.pixels[1][0] }.to "C"
+      expect{ subject }.to change{ bitmap.pixels[0][0] }.to "C"
     end
   end
 
@@ -62,7 +62,7 @@ describe BitmapEditor::Tool::L do
       subject { BitmapEditor::Tool::L.perform! bitmap,params }
 
       it "should return false in base class" do
-      expect{ subject }.to change{ bitmap.pixels[1][0] }.to "C"
+      expect{ subject }.to change{ bitmap.pixels[0][0] }.to "C"
       end
     end
 

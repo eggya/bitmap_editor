@@ -7,7 +7,7 @@ describe BitmapEditor::Tool::H do
 
   before do
     bitmap.generate_pixels
-    bitmap.pixels[3][0] = "F"
+    bitmap.pixels[2][0] = "F"
   end
 
   #### CLASS METHODS
@@ -16,7 +16,7 @@ describe BitmapEditor::Tool::H do
     subject { BitmapEditor::Tool::H.perform! bitmap,params }
 
     it "should return false as default" do
-      expect{ subject }.to change{ bitmap.pixels[3][0] }.from("F").to("C")
+      expect{ subject }.to change{ bitmap.pixels[2][0] }.from("F").to("C")
     end
   end
 
@@ -64,7 +64,7 @@ describe BitmapEditor::Tool::H do
 
     describe "#Perform!" do
       it "should return false in base class" do
-        expect{ subject.perform! }.to change{ bitmap.pixels[3][0] }.from("F").to("C")
+        expect{ subject.perform! }.to change{ bitmap.pixels[2][0] }.from("F").to("C")
       end
     end
 

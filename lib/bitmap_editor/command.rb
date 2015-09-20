@@ -2,7 +2,7 @@ module BitmapEditor
   class Command
 
     # TODO: gather the class names from Tools module
-    Registered = ["I","L","C","V","H","F","S"].freeze
+    Registered = ["I","L","C","V","H","F","S","R"].freeze
     attr_reader :key, :params, :bitmap
 
     # returns [BitmapEditorError] when validation failed
