@@ -11,6 +11,8 @@ module BitmapEditor
 
         def perform
           bitmap.pixels = bitmap.pixels.transpose.map &:reverse
+          bitmap.width  = bitmap.pixels.size
+          bitmap.height = bitmap.pixels[0].size
         end
       
     end
