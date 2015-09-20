@@ -22,7 +22,8 @@ module BitmapEditor
       protected
 
         def perform
-          [@y_axis_1,@y_axis_2].each {|i| bitmap.pixels[i-1][@x_axis-1] = @colour }
+          min,max = [@y_axis_1, @y_axis_2].sort
+          (min..max).to_a.each {|i| bitmap.pixels[i-1][@x_axis-1] = @colour }
         end
 
         def validate_params

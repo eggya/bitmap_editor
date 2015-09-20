@@ -7,7 +7,7 @@ describe BitmapEditor::Tool::V do
 
   before do
     bitmap.generate_pixels
-    bitmap.pixels[1][0] = "F"
+    bitmap.pixels[1].fill("F")
   end
 
   #### CLASS METHODS
@@ -16,7 +16,7 @@ describe BitmapEditor::Tool::V do
     subject { BitmapEditor::Tool::V.perform! bitmap,params }
 
     it "should change pixels value on perform" do
-      expect{ subject }.to change{ bitmap.pixels[1][0] }.from("F").to("C")
+      expect{ subject }.to change{ [bitmap.pixels[1][0],bitmap.pixels[2][0]] }.from(["F","O"]).to(["C","C"])
     end
   end
 
