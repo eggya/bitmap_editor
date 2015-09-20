@@ -4,7 +4,7 @@ module BitmapEditor
 
       # returns [Boolean] True when validation passed
       def validate
-        return super unless params.empty?
+        fail ParamsValidationError.new(params.count,0) unless params.empty?
       end
 
       protected

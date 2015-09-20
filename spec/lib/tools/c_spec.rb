@@ -28,7 +28,7 @@ describe BitmapEditor::Tool::C do
         let(:params) {[ "P","F" ]}
 
         it "should raise error when params is not in valid count" do
-          expect{ subject.validate }.to raise_error BitmapEditor::ValidationError
+          expect{ subject.validate }.to raise_error BitmapEditor::ParamsValidationError
         end
       end
 
