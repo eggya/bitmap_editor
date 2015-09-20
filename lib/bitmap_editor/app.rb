@@ -4,6 +4,8 @@ module BitmapEditor
   class App
 
     Terminates = %w(X)
+    Printer = %w(S)
+    
     attr_reader :bitmap
 
     # application runner
@@ -21,8 +23,13 @@ module BitmapEditor
     def run!
       begin
         while line = Readline.readline("> ", true)
-          exit if line.split == Terminates
-          BitmapEditor::Command.execute bitmap,line.split
+          keys = line.split
+
+          case keys.first
+          when "X" then exit
+          when "S" then printf BitmapEditor::Tool::S.perform! bitmap,[]
+          else BitmapEditor::Command.execute bitmap,keys
+          end
         end
       
       rescue Error => e

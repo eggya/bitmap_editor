@@ -10,7 +10,7 @@ module BitmapEditor
       protected
 
         def perform
-          bitmap.pixels.each{|col| printf col.join + "\n" }
+          bitmap.pixels.inject("") {|res,col| res = res + (col.join + "\n") }
         end
       
     end

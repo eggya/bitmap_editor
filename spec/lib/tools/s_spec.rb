@@ -12,7 +12,7 @@ describe BitmapEditor::Tool::S do
     subject { BitmapEditor::Tool::S.perform! bitmap,params }
 
     it "should return array as result" do
-      expect( subject ).to match_array [["O","O","O"],["O","O","O"],["O","O","O"]]
+      expect( subject ).to eq "OOO\nOOO\nOOO\n"
     end
   end
 
@@ -40,7 +40,7 @@ describe BitmapEditor::Tool::S do
 
     describe "#Perform!" do
       it "should return array as result" do
-        expect( subject.perform! ).to match_array [["O","O","O"],["O","O","O"],["O","O","O"]]
+        expect( subject.perform! ).to eq "OOO\nOOO\nOOO\n"
       end
     end
 
