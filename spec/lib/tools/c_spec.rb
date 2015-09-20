@@ -13,7 +13,7 @@ describe BitmapEditor::Tool::C do
 
     it "should return hash of arrays of cleared bitmap" do
       expect( subject ).to be_a Array
-      expect( subject ).to eq([[0,0,0],[0,0,0],[0,0,0]])
+      expect( subject ).to eq([["O","O","O"],["O","O","O"],["O","O","O"]])
     end
   end
 
@@ -44,7 +44,7 @@ describe BitmapEditor::Tool::C do
 
       it "should return hash of arrays of cleared bitmap" do
         expect( subject.perform! ).to be_a Array
-        expect( subject.perform! ).to eq([[0,0,0],[0,0,0],[0,0,0]])
+        expect( subject.perform! ).to eq([["O","O","O"],["O","O","O"],["O","O","O"]])
       end
     end
 

@@ -4,7 +4,7 @@ describe BitmapEditor::Tool::R do
 
   let(:params) { [] }
   let(:bitmap) { BitmapEditor::Bitmap.new 3,3 }
-  before { bitmap.pixels = [[0,0,0],["F","F","F"],["C","C","C"]] }
+  before { bitmap.pixels = [["O","O","O"],["F","F","F"],["C","C","C"]] }
 
   #### CLASS METHODS
 
@@ -12,7 +12,7 @@ describe BitmapEditor::Tool::R do
     subject { BitmapEditor::Tool::R.perform! bitmap,params }
 
     it "should return transposed array as a result" do
-      expect( subject ).to match_array [["C","F",0],["C","F",0],["C","F",0]]
+      expect( subject ).to match_array [["C","F","O"],["C","F","O"],["C","F","O"]]
     end
   end
 
@@ -40,7 +40,7 @@ describe BitmapEditor::Tool::R do
 
     describe "#Perform!" do
       it "should return transposed array as a result" do
-        expect( subject.perform! ).to match_array [["C","F",0],["C","F",0],["C","F",0]]
+        expect( subject.perform! ).to match_array [["C","F","O"],["C","F","O"],["C","F","O"]]
       end
     end
 

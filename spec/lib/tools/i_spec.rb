@@ -4,7 +4,7 @@ describe BitmapEditor::Tool::I do
 
   let(:params) { [3,4] }
   let(:bitmap) { BitmapEditor::Bitmap.new }
-  let(:new_bitmap) {[[0,0,0],[0,0,0],[0,0,0],[0,0,0]]}
+  let(:new_bitmap) {[["O","O","O"],["O","O","O"],["O","O","O"],["O","O","O"]]}
 
   #### CLASS METHODS
 

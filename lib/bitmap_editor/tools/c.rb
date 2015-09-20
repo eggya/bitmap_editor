@@ -10,7 +10,7 @@ module BitmapEditor
       protected
         
         def perform
-          bitmap.pixels.each {|col| col.fill(0) }
+          bitmap.pixels.each {|col| col.fill("O") }
         end
       
     end

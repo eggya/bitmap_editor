@@ -40,7 +40,7 @@ describe BitmapEditor::Bitmap do
     end
 
     it "should generate the bitmap's pixels" do
-      expect{ subject.generate_pixels }.to change { subject.pixels }.to( [[0, 0, 0],[0, 0, 0],[0, 0, 0],[0, 0, 0]] )
+      expect{ subject.generate_pixels }.to change { subject.pixels }.to( [["O", "O", "O"],["O", "O", "O"],["O", "O", "O"],["O", "O", "O"]] )
     end
   end
   

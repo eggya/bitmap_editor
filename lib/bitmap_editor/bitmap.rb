@@ -18,7 +18,7 @@ module BitmapEditor
 
     # returns [Hash[Array]] represents pixels in each rows of the bitmap
     def generate_pixels
-      @pixels = Array.new(@height) { Array.new(@width) {0} }
+      @pixels = Array.new(@height) { Array.new(@width) {"O"} }
     end
 
   end
