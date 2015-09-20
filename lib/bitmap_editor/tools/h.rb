@@ -34,7 +34,7 @@ module BitmapEditor
         end
 
         def validate_dimension
-          fail ValidationError.new("maximum size is 250x250") unless 
+          fail ValidationError.new("maximum size is #{bitmap.width}x#{bitmap.height}") unless 
             @x_axis_1 <= bitmap.width && @x_axis_2 <= bitmap.width && @y_axis <= bitmap.height
         end
     end
