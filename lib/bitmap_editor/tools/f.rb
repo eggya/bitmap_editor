@@ -9,7 +9,6 @@ module BitmapEditor
         @x_axis = params[0].to_i
         @y_axis = params[1].to_i
         @colour = params[2].to_s
-        @old_colour = bitmap.pixels[@y_axis-1][@x_axis-1]
       end
 
       # returns [Boolean] True when validation passed
@@ -22,8 +21,10 @@ module BitmapEditor
       protected
 
         def perform
+          original_colour = bitmap.pixels[@y_axis-1][@x_axis-1]
+
           bitmap.pixels.each do |row|
-            row.map! {|col| col == @old_colour ? col = @colour : col }
+            row.map! {|col| col == original_colour ? col = @colour : col }
           end
         end
 
@@ -36,7 +37,9 @@ module BitmapEditor
         end
 
         def validate_dimension
-          fail ValidationError.new("maximum size is #{bitmap.width}x#{bitmap.height}") unless @x_axis <= bitmap.width && @y_axis <= bitmap.height
+          valid_range = [@x_axis,@y_axis].all? {|num| num.between? 0,250 }
+          valid_dimension = @x_axis <= bitmap.width && @y_axis <= bitmap.height
+          fail DimensionValidationError.new(bitmap.width,bitmap.height) unless valid_range && valid_dimension
         end
 
     end

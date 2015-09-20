@@ -52,7 +52,7 @@ describe BitmapEditor::Tool::L do
         let(:params) { [4,2,"C"] }
 
         it "should raise error when coordinates are bigger than canvass" do
-          expect{ subject.validate }.to raise_error BitmapEditor::ValidationError
+          expect{ subject.validate }.to raise_error BitmapEditor::DimensionValidationError
         end
       end
 
