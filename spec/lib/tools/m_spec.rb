@@ -41,12 +41,6 @@ describe BitmapEditor::Tool::M do
       end
     end
 
-    describe "#Perform!" do
-      it "should return array as result" do
-        expect( subject.perform! ).to match_array [["T","O","O"],["Y","O","O"],["F","O","O"]]
-      end
-    end
-
   end
 
 end

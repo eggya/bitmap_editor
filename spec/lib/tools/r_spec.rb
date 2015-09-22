@@ -11,6 +11,10 @@ describe BitmapEditor::Tool::R do
   describe "#Perform!" do
     subject { BitmapEditor::Tool::R.perform! bitmap,params }
 
+    it "should change the bitmap width and height" do
+      expect{ subject }.to change { [bitmap.width, bitmap.height] }.from([4,3]).to([3,4])
+    end
+
     it "should return transposed array as a result" do
       expect{ subject }.to change { bitmap.pixels }.to [["T","C","F","O"],["T","C","F","O"],["T","C","F","O"]]
     end
@@ -35,16 +39,6 @@ describe BitmapEditor::Tool::R do
         it "should not raise any errors when validation satisfied" do
           expect( subject.validate ).to be_nil
         end
-      end
-    end
-
-    describe "#Perform!" do
-      it "should change the bitmap width and height" do
-        expect{ subject.perform! }.to change { [bitmap.width, bitmap.height] }.from([4,3]).to([3,4])
-      end
-
-      it "should return transposed array as a result" do
-        expect{ subject.perform! }.to change { bitmap.pixels }.to [["T","C","F","O"],["T","C","F","O"],["T","C","F","O"]]
       end
     end
 

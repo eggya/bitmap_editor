@@ -71,14 +71,6 @@ describe BitmapEditor::Tool::L do
       end
     end
 
-    describe "#Perform!" do
-      subject { BitmapEditor::Tool::L.perform! bitmap,params }
-
-      it "should return false in base class" do
-      expect{ subject }.to change{ bitmap.pixels[0][0] }.to "C"
-      end
-    end
-
   end
 
 end

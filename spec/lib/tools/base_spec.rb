@@ -41,12 +41,6 @@ describe BitmapEditor::Tool::Base do
       end
     end
 
-    describe "#Perform" do
-      it "should return false as default" do
-        expect( subject.send :perform ).to eq false
-      end
-    end
-
   end
 
 end

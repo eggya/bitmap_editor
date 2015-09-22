@@ -38,16 +38,6 @@ describe BitmapEditor::Tool::C do
         end
       end
     end
-
-    describe "#Perform!" do
-      subject { BitmapEditor::Tool::C.new bitmap,params }
-
-      it "should return hash of arrays of cleared bitmap" do
-        expect( subject.perform! ).to be_a Array
-        expect( subject.perform! ).to eq([["O","O","O"],["O","O","O"],["O","O","O"]])
-      end
-    end
-
   end
 
 end

@@ -55,12 +55,6 @@ describe BitmapEditor::Tool::I do
       end
     end
 
-    describe "#Perform!" do
-      it "should return hash of arrays of the bitmap" do
-        expect( subject.perform! ).to be_a Array
-      end
-    end
-
   end
 
 end

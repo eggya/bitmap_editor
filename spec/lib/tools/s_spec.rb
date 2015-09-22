@@ -38,12 +38,6 @@ describe BitmapEditor::Tool::S do
       end
     end
 
-    describe "#Perform!" do
-      it "should return array as result" do
-        expect( subject.perform! ).to eq "OOO\nOOO\nOOO\n"
-      end
-    end
-
   end
 
 end

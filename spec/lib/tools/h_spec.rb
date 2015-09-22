@@ -75,12 +75,6 @@ describe BitmapEditor::Tool::H do
       end
     end
 
-    describe "#Perform!" do
-      it "should change pixels value on perform" do
-        expect{ subject.perform! }.to change{ bitmap.pixels[2][0] }.from("F").to("C")
-      end
-    end
-
   end
 
 end
