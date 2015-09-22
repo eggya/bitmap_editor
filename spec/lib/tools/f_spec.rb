@@ -2,12 +2,11 @@ require 'spec_helper'
 
 describe BitmapEditor::Tool::F do
 
-  let(:params) { [2,2,"C"] }
+  let(:params) { [3,3,"C"] }
   let(:bitmap) { BitmapEditor::Bitmap.new 3,3 }
 
   before do
-    bitmap.generate_pixels
-    bitmap.pixels[1][1] = "F"
+    bitmap.pixels = [["F","O","O"],["F","F","F"],["F","O","O"]]
   end
 
   #### CLASS METHODS
@@ -16,7 +15,8 @@ describe BitmapEditor::Tool::F do
     subject { BitmapEditor::Tool::F.perform! bitmap,params }
 
     it "should change pixels value on perform" do
-      expect{ subject }.to change{ bitmap.pixels[1][1] }.from("F").to("C")
+      expect{ subject }.to change{ bitmap.pixels[2][1] }.from("O").to("C")
+      expect{ subject }.not_to change{ bitmap.pixels[2][0] }
     end
   end
 
@@ -77,7 +77,7 @@ describe BitmapEditor::Tool::F do
 
     describe "#Perform!" do
       it "should change pixel value on perform" do
-        expect{ subject.perform! }.to change{ bitmap.pixels[1][1] }.from("F").to("C")
+        expect{ subject.perform! }.to change{ bitmap.pixels[2][1] }.from("O").to("C")
       end
     end
 

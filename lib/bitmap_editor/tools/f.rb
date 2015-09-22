@@ -6,9 +6,10 @@ module BitmapEditor
       # assign additional vars
       def initialize bitmap,params
         super
-        @x_axis = params[0].to_i
-        @y_axis = params[1].to_i
+        @x_axis = params[0].to_i-1
+        @y_axis = params[1].to_i-1
         @colour = params[2].to_s
+        @original_colour = @bitmap.pixels[@y_axis][@x_axis]
       end
 
       # returns [Boolean] True when validation passed
@@ -22,11 +23,18 @@ module BitmapEditor
       protected
 
         def perform
-          original_colour = bitmap.pixels[@y_axis-1][@x_axis-1]
+          fill_region bitmap,@x_axis,@y_axis
+        end
 
-          bitmap.pixels.each do |row|
-            row.map! {|col| col == original_colour ? col = @colour : col }
-          end
+        def fill_region bitmap,x_axis,y_axis
+          return unless valid_dimension?(x_axis,y_axis) && bitmap.pixels[x_axis][y_axis] == @original_colour
+          bitmap.pixels[x_axis][y_axis] = @colour
+          
+          [[1,0],[-1,0],[0,1],[0,-1]].each {|x,y| fill_region bitmap, x_axis+x, y_axis+y }
+        end
+
+        def valid_dimension? x_axis,y_axis
+          x_axis < bitmap.width && y_axis < bitmap.height
         end
 
         def validate_params
@@ -34,7 +42,7 @@ module BitmapEditor
         end
 
         def validate_coordinates
-          fail CoordinateValidationError.new unless [@x_axis, @y_axis].all? {|num| num.between? 1,250 }
+          fail CoordinateValidationError.new unless [@x_axis, @y_axis].all? {|num| num.between? 0,250 }
         end
 
         def validate_colour
@@ -42,8 +50,7 @@ module BitmapEditor
         end
 
         def validate_dimension
-          fail DimensionValidationError.new(bitmap.width, bitmap.height) unless
-            @x_axis <= bitmap.width && @y_axis <= bitmap.height
+          fail DimensionValidationError.new(bitmap.width, bitmap.height) unless valid_dimension? @x_axis,@y_axis
         end
 
     end
