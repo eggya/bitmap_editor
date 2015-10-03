@@ -11,7 +11,7 @@ describe BitmapEditor::Tool::Base do
     subject { BitmapEditor::Tool::Base.descendants }
 
     it "should return a list of descendants names" do
-      expect( subject ).to match_array ["I","L","C","V","H","F","S","R","M"]
+      expect( subject ).to match_array ["I","L","C","V","H","F","S","R","M","K"]
     end
   end
 
