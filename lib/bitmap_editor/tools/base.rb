@@ -39,6 +39,10 @@ module BitmapEditor
           false
         end
 
+        def validate_colour
+          fail ValidationError.new("colours are specified by single capital letter") if @colour.match(/^[A-Z]$/).nil?
+        end
+
     end
   end
 end

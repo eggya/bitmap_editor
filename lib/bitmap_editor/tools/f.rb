@@ -29,7 +29,7 @@ module BitmapEditor
         def fill_region bitmap,x_axis,y_axis
           return unless valid_dimension?(x_axis,y_axis) && bitmap.pixels[x_axis][y_axis] == @original_colour
           bitmap.pixels[x_axis][y_axis] = @colour
-          
+
           [[1,0],[-1,0],[0,1],[0,-1]].each {|x,y| fill_region bitmap, x_axis+x, y_axis+y }
         end
 
@@ -43,10 +43,6 @@ module BitmapEditor
 
         def validate_coordinates
           fail CoordinateValidationError.new unless [@x_axis, @y_axis].all? {|num| num.between? 0,250 }
-        end
-
-        def validate_colour
-          fail ValidationError.new("colours are specified by single capital letter") if @colour.match(/^[A-Z]$/).nil?
         end
 
         def validate_dimension

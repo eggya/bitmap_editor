@@ -35,15 +35,11 @@ module BitmapEditor
           fail CoordinateValidationError.new unless [@x_axis, @y_axis_1, @y_axis_2].all? {|num| num.between? 1,250 }
         end
 
-        def validate_colour
-          fail ValidationError.new("colours are specified by single capital letter") if @colour.match(/^[A-Z]$/).nil?
-        end
-
         def validate_dimension
           fail DimensionValidationError.new(bitmap.width,bitmap.height) unless
             @x_axis <= bitmap.width && @y_axis_1 <= bitmap.height && @y_axis_2 <= bitmap.height
         end
-      
+
     end
   end
 end

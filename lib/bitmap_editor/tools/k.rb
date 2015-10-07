@@ -27,10 +27,6 @@ module BitmapEditor
           fail ParamsValidationError.new(params.count,5) unless params.count == 5
         end
 
-        def validate_colour
-          fail ValidationError.new("colours are specified by single capital letter") if @colour.match(/^[A-Z]$/).nil?
-        end
-
         def validate_coordinates
           fail CoordinateValidationError.new unless [@y_axis_1, @y_axis_2, @x_axis_1, @x_axis_2].all? {|num| num.between? 1,250 }
         end
